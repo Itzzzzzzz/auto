@@ -61,10 +61,12 @@ jobs:
           EOF
 
       - name: Run pipeline (scheduled)
+        id: run_pipeline_scheduled
         if: github.event_name == 'schedule'
         run: python main.py --privacy public
 
       - name: Run pipeline (manual trigger)
+        id: run_pipeline_manual
         if: github.event_name == 'workflow_dispatch'
         run: |
           TOPIC_ARG=""
@@ -75,6 +77,9 @@ jobs:
 
       - name: Upload output video as artifact (for debugging)
         if: always()
+        continue-on-error: true  # GitHub's artifact backend is occasionally flaky (CreateArtifact
+                                   # timeouts) — a failure here is just "no debug video this run",
+                                   # it must never block the queue/log commit below.
         uses: actions/upload-artifact@v4
         with:
           name: output-video-${{ github.run_id }}
@@ -83,9 +88,13 @@ jobs:
           if-no-files-found: ignore
 
       - name: Commit updated topic queue/log
-        # Only runs if the pipeline steps above succeeded — a failed run leaves
-        # the queue/log untouched so the same topic gets retried next time.
-        if: success()
+        # Only runs if the actual pipeline step succeeded — a failed pipeline run leaves
+        # the queue/log untouched so the same topic gets retried next time. We check the
+        # pipeline steps' own outcomes rather than job success() so that a flaky debug-artifact
+        # upload (see step above) can't cause this to be skipped.
+        if: |
+          (github.event_name == 'schedule' && steps.run_pipeline_scheduled.outcome == 'success') ||
+          (github.event_name == 'workflow_dispatch' && steps.run_pipeline_manual.outcome == 'success')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

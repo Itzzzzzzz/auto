@@ -2,7 +2,6 @@
 # Each run uses the FIRST topic here, then deletes it from this file
 # automatically (only after that run succeeds — a failed run leaves it here
 # to retry next time).
-Your mind is tricking you every day
 This is why you feel unmotivated all the time
 You’re stuck in a loop you can’t see
 This habit is silently ruining your life

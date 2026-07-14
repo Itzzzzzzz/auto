@@ -2,7 +2,6 @@
 # Each run uses the FIRST topic here, then deletes it from this file
 # automatically (only after that run succeeds — a failed run leaves it here
 # to retry next time).
-This is why nothing feels exciting anymore
 You’re sabotaging yourself without realizing it
 This is why you quit everything halfway
 Your mind is tricking you every day

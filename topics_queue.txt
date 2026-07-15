@@ -2,7 +2,6 @@
 # Each run uses the FIRST topic here, then deletes it from this file
 # automatically (only after that run succeeds — a failed run leaves it here
 # to retry next time)
-You’re addicted to distraction not your phone
 This is why you can’t be consistent
 You’re destroying your future every day
 This is why you’ll never reach your potential

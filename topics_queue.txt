@@ -2,7 +2,6 @@
 # Each run uses the FIRST topic here, then deletes it from this file
 # automatically (only after that run succeeds — a failed run leaves it here
 # to retry next time)
-The most dangerous place on Earth isn't what you think
 This country has no official capital
 The richest person you've never heard of
 The biggest lie you learned in school

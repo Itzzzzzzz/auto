@@ -2,7 +2,6 @@
 # Each run uses the FIRST topic here, then deletes it from this file
 # automatically (only after that run succeeds — a failed run leaves it here
 # to retry next time)
-The internet almost disappeared because of this
 The most expensive mistake ever made
 This invention was created by accident
 The world's quietest place is terrifying
